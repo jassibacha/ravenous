@@ -20,8 +20,19 @@ import SearchBar from './components/SearchBar/SearchBar';
 // const businesses = [business,business,business,business,business,business];
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      businesses: []
+    };
+    this.searchYelp.bind(this);
+  }
   searchYelp(term, location, sortBy) {
-    console.log(`Searching Yelp with ${term}, ${location}, ${sortBy}`);
+    //console.log(`Searching Yelp with ${term}, ${location}, ${sortBy}`);
+    Yelp.search(term, location, sortBy).then(businesses => {
+      this.setState({business: businesses});
+    });
   }
   render() {
     return (
